@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../shared/theme/app_theme.dart';
 import 'router.dart';
 
 class RecipantryApp extends StatelessWidget {
@@ -8,6 +9,7 @@ class RecipantryApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Recipantry',
+      theme: AppTheme.lightTheme,
       routerConfig: appRouter,
     );
   }

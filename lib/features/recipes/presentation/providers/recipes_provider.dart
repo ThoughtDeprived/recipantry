@@ -18,3 +18,13 @@ final recipesProvider = StreamProvider<List<domain.Recipe>>((ref) {
   final repo = ref.watch(recipeRepositoryProvider);
   return repo.watchRecipes();
 });
+
+final recipeProvider = StreamProvider.family<domain.Recipe?, String>((ref, recipeId) {
+  final repo = ref.watch(recipeRepositoryProvider);
+  return repo.watchRecipe(recipeId);
+});
+
+final sampleRecipeSeedProvider = FutureProvider<void>((ref) async {
+  final repo = ref.watch(recipeRepositoryProvider);
+  await repo.seedSampleRecipes();
+});

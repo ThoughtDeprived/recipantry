@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'features/ingredients/presentation/providers/ingredients_provider.dart';
+import 'features/inventory/presentation/providers/inventory_provider.dart';
+import 'features/recipes/presentation/providers/recipes_provider.dart';
 import 'app/app.dart';
 
 void main() {
-  runApp(const ProviderScope(child: RecipantryApp()));
+  runApp(const ProviderScope(child: _AppStartupInitializer()));
+}
+
+class _AppStartupInitializer extends ConsumerWidget {
+  const _AppStartupInitializer();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(storageSpaceSeedProvider);
+    ref.watch(ingredientCatalogInitializationProvider);
+    ref.watch(sampleRecipeSeedProvider);
+    return const RecipantryApp();
+  }
 }
 
 
